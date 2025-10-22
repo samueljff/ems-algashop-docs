@@ -430,7 +430,7 @@
 											"top": 540,
 											"width": 234.4033203125,
 											"height": 13,
-											"text": "+changeName(String)",
+											"text": "+changeName(FullName)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -448,7 +448,7 @@
 											"top": 555,
 											"width": 234.4033203125,
 											"height": 13,
-											"text": "+changeEmail(String)",
+											"text": "+changeEmail(Email)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -466,7 +466,7 @@
 											"top": 570,
 											"width": 234.4033203125,
 											"height": 13,
-											"text": "+changePhone(String)",
+											"text": "+changePhone(Phone)",
 											"horizontalAlignment": 0
 										}
 									],
@@ -3901,8 +3901,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGXg0BYuP8sYVs="
 									},
-									"name": "String",
-									"type": ""
+									"name": "FullName"
 								}
 							]
 						},
@@ -3920,8 +3919,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGXg0B5gv81X3U="
 									},
-									"name": "String",
-									"type": ""
+									"name": "Email"
 								}
 							]
 						},
@@ -3939,8 +3937,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGXg0CX4v8+omg="
 									},
-									"name": "String",
-									"type": ""
+									"name": "Phone"
 								}
 							]
 						}
