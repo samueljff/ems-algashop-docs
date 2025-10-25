@@ -345,7 +345,7 @@
 									"subViews": [
 										{
 											"_type": "UMLOperationView",
-											"_id": "AAAAAAGaCPuzvHC9vG4=",
+											"_id": "AAAAAAGXg1mmgf9SSic=",
 											"_parent": {
 												"$ref": "AAAAAAGXf154keFaWhk="
 											},
@@ -363,7 +363,7 @@
 										},
 										{
 											"_type": "UMLOperationView",
-											"_id": "AAAAAAGaCPuzvXDAmRQ=",
+											"_id": "AAAAAAGXg1mmgv9VS+I=",
 											"_parent": {
 												"$ref": "AAAAAAGXf154keFaWhk="
 											},
@@ -381,7 +381,7 @@
 										},
 										{
 											"_type": "UMLOperationView",
-											"_id": "AAAAAAGaCPuzvXDD0gE=",
+											"_id": "AAAAAAGXg1mmgv9YrZI=",
 											"_parent": {
 												"$ref": "AAAAAAGXf154keFaWhk="
 											},
@@ -399,7 +399,7 @@
 										},
 										{
 											"_type": "UMLOperationView",
-											"_id": "AAAAAAGaCPuzvXDGi8k=",
+											"_id": "AAAAAAGXg1mmgv9bMgM=",
 											"_parent": {
 												"$ref": "AAAAAAGXf154keFaWhk="
 											},
@@ -417,7 +417,7 @@
 										},
 										{
 											"_type": "UMLOperationView",
-											"_id": "AAAAAAGaCPuzvXDJJvY=",
+											"_id": "AAAAAAGXg1mmg/9eyfg=",
 											"_parent": {
 												"$ref": "AAAAAAGXf154keFaWhk="
 											},
@@ -435,7 +435,7 @@
 										},
 										{
 											"_type": "UMLOperationView",
-											"_id": "AAAAAAGaCPuzvXDMQIo=",
+											"_id": "AAAAAAGXg1mmg/9hJ1Q=",
 											"_parent": {
 												"$ref": "AAAAAAGXf154keFaWhk="
 											},
@@ -453,7 +453,7 @@
 										},
 										{
 											"_type": "UMLOperationView",
-											"_id": "AAAAAAGaCPuzvXDP2R0=",
+											"_id": "AAAAAAGXg1mmg/9kUms=",
 											"_parent": {
 												"$ref": "AAAAAAGXf154keFaWhk="
 											},
@@ -4394,7 +4394,7 @@
 											"top": 211,
 											"width": 287,
 											"height": 13,
-											"text": "-id: UUID",
+											"text": "-id: CustomerId",
 											"horizontalAlignment": 0
 										},
 										{
@@ -4412,7 +4412,7 @@
 											"top": 226,
 											"width": 287,
 											"height": 13,
-											"text": "-fullName: String",
+											"text": "-fullName: FullName",
 											"horizontalAlignment": 0
 										},
 										{
@@ -4430,7 +4430,7 @@
 											"top": 241,
 											"width": 287,
 											"height": 13,
-											"text": "-birthDate: LocalDate",
+											"text": "-birthDate: BirthDate",
 											"horizontalAlignment": 0
 										},
 										{
@@ -4448,7 +4448,7 @@
 											"top": 256,
 											"width": 287,
 											"height": 13,
-											"text": "-email: String",
+											"text": "-email: Email",
 											"horizontalAlignment": 0
 										},
 										{
@@ -4466,7 +4466,7 @@
 											"top": 271,
 											"width": 287,
 											"height": 13,
-											"text": "-phone: String",
+											"text": "-phone: Phone",
 											"horizontalAlignment": 0
 										},
 										{
@@ -4484,7 +4484,7 @@
 											"top": 286,
 											"width": 287,
 											"height": 13,
-											"text": "-document: String",
+											"text": "-document: Document",
 											"horizontalAlignment": 0
 										},
 										{
@@ -4574,7 +4574,7 @@
 											"top": 361,
 											"width": 287,
 											"height": 13,
-											"text": "-loyaltyPoints: Integer",
+											"text": "-loyaltyPoints: LoyaltyPoints",
 											"horizontalAlignment": 0
 										}
 									],
@@ -4610,7 +4610,7 @@
 											"top": 384,
 											"width": 287,
 											"height": 13,
-											"text": "+addLoyaltyPoints(Integer)",
+											"text": "+addLoyaltyPoints(LoyaltyPoints)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -4682,7 +4682,7 @@
 											"top": 444,
 											"width": 287,
 											"height": 13,
-											"text": "+changeName(String)",
+											"text": "+changeName(FullName)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -4700,7 +4700,7 @@
 											"top": 459,
 											"width": 287,
 											"height": 13,
-											"text": "+changeEmail(String)",
+											"text": "+changeEmail(Email)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -4718,7 +4718,7 @@
 											"top": 474,
 											"width": 287,
 											"height": 13,
-											"text": "+changePhone(String)",
+											"text": "+changePhone(Phone)",
 											"horizontalAlignment": 0
 										}
 									],
@@ -4791,6 +4791,5 @@
 				}
 			]
 		}
-	],
-	"documentVersion": 1
+	]
 }
