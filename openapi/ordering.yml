@@ -185,7 +185,103 @@ paths:
           $ref: "#/components/responses/UnprocessableEntity"
         500:
           $ref: "#/components/responses/InternalError"
+    get:
+      description: List Orders
+      tags:
+        - Orders
+      parameters:
+        - name: status
+          in: query
+          required: false
+          schema:
+            $ref: "#/components/schemas/OrderStatus"
+          example: READY
 
+        - name: orderedDateFrom
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+          example: "2026-01-01T00:00:00Z"
+
+        - name: orderedDateTo
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+          example: "2026-01-31T23:59:59Z"
+
+        - name: totalAmountFrom
+          in: query
+          required: false
+          schema:
+            type: number
+            format: double
+          example: 100.0
+
+        - name: totalAmountTo
+          in: query
+          required: false
+          schema:
+            type: number
+            format: double
+          example: 1000.0
+
+        - name: orderId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "8e148bd5-57f6-2022-b9da-07cfaa294f9a"
+
+        - name: customerId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "7e148bd5-47f6-4022-b9da-07cfaa294f8a"
+
+        - $ref: "#/components/parameters/page"
+        - $ref: "#/components/parameters/size"
+        - $ref: "#/components/parameters/sort"
+        - $ref: "#/components/parameters/direction"
+      responses:
+        200:
+          description: ok
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: "#/components/schemas/Page"
+                - type: object
+                properties:
+                  content:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/OrderSummary"
+  /api/v1/orders/{orderId}:
+    get:
+      parameters:
+        - schema:
+            type: string
+          name: orderId
+          in: path
+          required: true
+          example: '8e157bd5-47f6-4100-b9da-07cfaa294f7a'
+      description: Get one order by id
+      tags:
+        - Orders
+      responses:
+        200:
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OrderSummary"
+        404:
+          $ref: "#/components/responses/NotFound"
 components:
   parameters:
     page:
@@ -475,7 +571,7 @@ components:
           example: Invalid fields
         instance:
           type: string
-          example: /"api/v1/customers"
+          example: "/api/v1/customers"
         detail:
           type: string
           example: One or more fields are invalid
@@ -607,6 +703,50 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/OrderItem"
+    OrderSummary:
+      required:
+        - id
+        - customer
+        - paymentMethod
+        - totalItems
+        - totalAmount
+        - placedAt
+        - canceledAt
+        - paidAt
+        - readyAt
+        - status
+      properties:
+        id:
+          type: string
+          example: "01226N0640J7Q"
+        customer:
+          $ref: "#/components/schemas/CustomerMinimal"
+        totalItems:
+          type: integer
+          example: 2
+        totalAmount:
+          type: number
+          example: 41.98
+        placedAt:
+          type: string
+          format: date-time
+          example: "2024-04-04T00:12:45Z"
+        canceledAt:
+          type: string
+          format: date-time
+          example: "2024-04-04T00:12:45Z"
+        paidAt:
+          type: string
+          format: date-time
+          example: "2024-04-04T00:12:45Z"
+        readyAt:
+          type: string
+          format: date-time
+          example: "2024-04-04T00:12:45Z"
+        status:
+          $ref: "#/components/schemas/OrderStatus"
+        paymentMethod:
+          $ref: "#/components/schemas/PaymentMethod"
     OrderItem:
       required:
         - id
