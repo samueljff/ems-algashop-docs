@@ -282,6 +282,188 @@ paths:
                 $ref: "#/components/schemas/OrderSummary"
         404:
           $ref: "#/components/responses/NotFound"
+
+  /api/v1/shopping-carts:
+    post:
+      tags:
+        - Shopping-carts
+      description: create an shopping-cart
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+             $ref: "#/components/schemas/ShoppingCartInput"
+      responses:
+        201:
+          description: created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ShoppingCart"
+          headers:
+            location:
+              schema:
+                type: string
+              description: Resource Shopping-carts
+              example: "/api/v1/orders/6a6ca34c-e65c-496e-adaf-f872e1784003"
+        400:
+          $ref: "#/components/responses/BadRequest"
+        500:
+          $ref: "#/components/responses/InternalError"
+
+  /api/v1/shopping-carts/{shoppingCartId}:
+    get:
+      parameters:
+        - schema:
+            type: string
+          name: shoppingCartId
+          in: path
+          required: true
+          example: '6e148bd5-47f6-4022-b9da-07cfaa294f7a'
+      description: Get one shopping-cart by id
+      tags:
+        - Shopping-carts
+      responses:
+        200:
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ShoppingCart"
+        404:
+          $ref: "#/components/responses/NotFound"
+  
+    delete:
+      parameters:
+        - schema:
+            type: string
+          name: shoppingCartId
+          in: path
+          required: true
+          example: '6e148bd5-47f6-4022-b9da-07cfaa294f7a'
+      description:  Delete shopping-cart
+      tags:
+        - Shopping-carts
+      responses:
+        204:
+          description: No content
+        404:
+          $ref: "#/components/responses/NotFound"
+
+  /api/v1/shopping-carts/{shoppingCartId}/items:
+    post:
+      summary: Add or update item in shopping cart
+      description: Adds a new item or updates an existing item in the shopping cart
+      tags:
+        - Shopping-carts
+      parameters:
+        - name: shoppingCartId
+          in: path
+          required: true
+          description: Shopping cart identifier
+          schema:
+            type: string
+          example: "6e148bd5-47f6-4022-b9da-07cfaa294f7a"
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ShoppingCartItemInput"
+
+      responses:
+        204:
+          description: No content
+
+        400:
+          $ref: "#/components/responses/BadRequest"
+
+        404:
+          $ref: "#/components/responses/NotFound"
+
+        500:
+          $ref: "#/components/responses/InternalError"
+    get:
+      summary: List items from shopping cart
+      description: Returns all items from a specific shopping cart
+      tags:
+        - Shopping-carts
+      parameters:
+        - name: shoppingCartId
+          in: path
+          required: true
+          description: Shopping cart identifier
+          schema:
+            type: string
+          example: "6e148bd5-47f6-4022-b9da-07cfaa294f7a"
+      responses:
+        200:
+          description: ok
+          content:
+             application/json:
+              schema:
+                $ref: "#/components/schemas/ShoppingCartItemList"
+        404:
+          $ref: "#/components/responses/NotFound"
+        500:
+          $ref: "#/components/responses/InternalError"
+    delete:
+      summary: Clear shopping cart items
+      description: Removes all items from a specific shopping cart
+      tags:
+        - Shopping-carts
+      parameters:
+        - name: shoppingCartId
+          in: path
+          required: true
+          description: Shopping cart identifier
+          schema:
+            type: string
+          example: "6e148bd5-47f6-4022-b9da-07cfaa294f7a"
+      responses:
+        204:
+          description: No content
+        404:
+          $ref: "#/components/responses/NotFound"
+        500:
+          $ref: "#/components/responses/InternalError"
+
+  /api/v1/shopping-carts/{shoppingCartId}/items/{itemId}:
+    delete:
+      summary: Remove item from shopping cart
+      description: Removes a specific item from the shopping cart
+      tags:
+        - Shopping-carts
+
+      parameters:
+        - name: shoppingCartId
+          in: path
+          required: true
+          description: Shopping cart identifier
+          schema:
+            type: string
+          example: "6e148bd5-47f6-4022-b9da-07cfaa294f7a"
+
+        - name: itemId
+          in: path
+          required: true
+          description: Item identifier
+          schema:
+            type: string
+          example: "9c3f2a71-8d4b-4e6a-a2f1-5b7d9c8e1234"
+
+      responses:
+        204:
+          description: No Content
+
+        404:
+          $ref: "#/components/responses/NotFound"
+
+        500:
+          $ref: "#/components/responses/InternalError"
+        
 components:
   parameters:
     page:
@@ -906,3 +1088,86 @@ components:
       enum:
         - GATEWAY_BALANCE
         - CREDIT_CARD
+
+    ShoppingCart:
+      required:
+        - id
+        - totalAmount
+        - totalItems
+        - customerId
+        - items
+      properties:
+        id:
+          type: string
+          example: '277297bf-e586-4389-9f21-b3ce0c3f6580'
+        totalAmount:
+          type: number
+          example: 41.98
+        totalItems:
+          type: integer
+          example: 1
+        customerId:
+          type: string
+          example: '277297bf-e586-4389-9f21-b3ce0c3f6580'
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/ShoppingCartItem"
+    ShoppingCartItem:
+      required:
+        - id
+        - productId
+        - name
+        - price
+        - available
+        - quantity
+        - totalAmount
+      properties:
+        id:
+          type: string
+          example: '177297bf-e586-4389-9f21-a3ce0c3f6580'
+        productId:
+          type: string
+          example: '277297bf-e586-4389-9f21-b3ce0c3f6580'
+        name:
+          type: string
+          example: 'Desktop Gamer Dive'
+        price:
+          type: number
+          example: 100.00
+        available:
+          type: boolean
+          example: false
+        quantity:
+          type: integer
+          example: 2
+        totalAmount:
+          type: number
+          example: 140
+    ShoppingCartItemList:
+      type: object
+      required:
+        - items
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/ShoppingCartItem"
+    ShoppingCartItemInput:
+      required:
+        - quantity
+        - productId
+      properties:
+        quantity:
+          type: integer
+          example: 2
+        productId:
+          type: string
+          example: '6a6ca34c-e65c-496e-adaf-f872e1784003'
+    ShoppingCartInput:
+      required:
+        - customerId
+      properties:
+        customerId:
+          type: string
+          example: '6a6ca34c-e65c-496e-adaf-f872e1784003'
