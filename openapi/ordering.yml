@@ -279,7 +279,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/OrderSummary"
+                $ref: "#/components/schemas/Order"
         404:
           $ref: "#/components/responses/NotFound"
 
